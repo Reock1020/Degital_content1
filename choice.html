@@ -15,15 +15,43 @@
   <body>
       <div align="center">
         <h1>連想されるものはどれでしょう？</h1>
-        <p><button type="button" class="btn btn-outline-dark btn-size">りんご</button>
-            <button type="button" class="btn btn-outline-dark btn-size">ゴリラ</button></p>
-        <p><button type="button" class="btn btn-outline-dark btn-size">ラッパ</button>
-            <button type="button" class="btn btn-outline-dark btn-size">ぶどう</button></p>
+        <p><button type="button" class="btn btn-outline-dark btn-size" id="choice1"></button>
+            <button type="button" class="btn btn-outline-dark btn-size" id="choice2">ゴリラ</button></p>
+        <p><button type="button" class="btn btn-outline-dark btn-size" id="choice3">ラッパ</button>
+            <button type="button" class="btn btn-outline-dark btn-size" id="choice4">ぶどう</button></p>
     　</div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
+    <script>
+      const value = localStorage.getItem('value');
+
+      const output_choice1 = document.getElementById('choice1');
+      const output_choice2 = document.getElementById('choice2');
+      const output_choice3 = document.getElementById('choice3');
+      const output_choice4 = document.getElementById('choice4');
+
+      function csv_data(dataPath) {
+        const request = new XMLHttpRequest(); // HTTPでファイルを読み込む
+        request.addEventListener('load', (event) => { // ロードさせ実行
+          const response = event.target.responseText; // 受け取ったテキストを返す
+          csv_array(response);
+        });
+        request.open('GET', dataPath, true); // csvのパスを指定
+        request.send();
+      }
+
+      function csv_array(data) {
+        const answerArray = data.split(',');
+        output_choice1.innerHTML = answerArray[value];
+      }
+
+      csv_data('answer.csv');
+
+       
+    </script>
+    
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

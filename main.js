@@ -24,13 +24,17 @@ function csv_array(data) {
 function flash_question(dataArray, dataString) {
 
   const question_num = Math.floor( Math.random() * (dataString.length));
+  localStorage.setItem('value', question_num);
   const question_volume = dataArray[question_num].length;
 
   const interValid = setInterval(() => {
     print(dataArray[question_num]);
     if(count >= question_volume) {
+      window.location.href = 'choice.html';
       clearInterval(interValid);
-    }}, 3000);
+    }
+  }, 3000);
+
 }
 
 function print(data) {
