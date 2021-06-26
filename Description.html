@@ -14,21 +14,23 @@
 
 <body>
     <h1 align="center">
-        <p style="font-size:250%">正解</p>
+        <p style="font-size:150%" id="judge"></p>
     </h1>
     <br>
     <h2 align="center">
-        <p style="font-size:200%" id="description">
+        <p style="font-size:100%" id="description">
         </p>
     </h2>
     <div style="text-align: center;">
-        <a class="btn" href="hello.html" role="button">次の問題へ</a>
+        <a class="btn" href="end.html" role="button">次の問題へ</a>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script>
         const value = localStorage.getItem('value');
+        const judge = localStorage.getItem('judge');
         const output_description = document.getElementById('description');
+        const output_judge = document.getElementById('judge');
 
         function csv_data(dataPath) {
             const request = new XMLHttpRequest(); // HTTPでファイルを読み込む
@@ -45,6 +47,11 @@
             output_description.innerHTML = answerArray[value];
         }
 
+        if (judge == 1) {
+            output_judge.innerHTML = "正解";
+        } else {
+            output_judge.innerHTML = "不正解";
+        }
         csv_data('description.csv');
     </script>
 
