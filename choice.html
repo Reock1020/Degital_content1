@@ -16,9 +16,9 @@
       <div align="center">
         <h1>連想されるものはどれでしょう？</h1>
         <p><button type="button" class="btn btn-outline-dark btn-size" id="choice1"></button>
-            <button type="button" class="btn btn-outline-dark btn-size" id="choice2">ゴリラ</button></p>
-        <p><button type="button" class="btn btn-outline-dark btn-size" id="choice3">ラッパ</button>
-            <button type="button" class="btn btn-outline-dark btn-size" id="choice4">ぶどう</button></p>
+            <button type="button" class="btn btn-outline-dark btn-size" id="choice2"></button></p>
+        <p><button type="button" class="btn btn-outline-dark btn-size" id="choice3"></button>
+            <button type="button" class="btn btn-outline-dark btn-size" id="choice4"></button></p>
     　</div>
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -26,6 +26,9 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
     <script>
       const value = localStorage.getItem('value');
+      // const answer;
+      let randomArray = [-1, -1, -1, -1];
+      let i = 0;
 
       const output_choice1 = document.getElementById('choice1');
       const output_choice2 = document.getElementById('choice2');
@@ -44,10 +47,84 @@
 
       function csv_array(data) {
         const answerArray = data.split(',');
-        output_choice1.innerHTML = answerArray[value];
+        // answer = answerArray[value];
+        randomArray[value%4] = answerArray[value];
+        while(i<4){
+          const r = Math.floor(Math.random() * (6));
+          if(randomArray.includes(answerArray[r])){   
+            continue;
+          }
+          if(i==value%4){
+            i++;
+            continue;
+          }
+          randomArray[i] = answerArray[r];
+          i++;
+        }
+        for(let j=0; j<4; j++){
+          if(j==0) output_choice1.innerHTML = randomArray[j];
+          else if(j==1) output_choice2.innerHTML = randomArray[j];
+          else if(j==2) output_choice3.innerHTML = randomArray[j];
+          else output_choice4.innerHTML = randomArray[j];
+        }
+        document.getElementById("choice1").onclick
+        document.getElementById("choice2").onclick
+        document.getElementById("choice3").onclick
+        document.getElementById("choice4").onclick
+      }
+
+      function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function getAnswerId() {
+
       }
 
       csv_data('answer.csv');
+
+      
+
+      document.getElementById("choice1").onclick = function() {
+        if(output_choice1==answer){
+          localStorage.setItem('judge', 1);
+        }
+        else{
+          localStorage.setItem('judge', 0);
+        }
+        window.location.href = 'description.html';
+      };
+
+      document.getElementById("choice2").onclick = function() {
+        if(output_choice2==answer){
+          localStorage.setItem('judge', 1);
+        }
+        else{
+          localStorage.setItem('judge', 0);
+        }
+        window.location.href = 'description.html';
+      };
+
+      document.getElementById("choice3").onclick = function() {
+        if(output_choice3==answer){
+          localStorage.setItem('judge', 1);
+        }
+        else{
+          localStorage.setItem('judge', 0);
+        }
+        window.location.href = 'description.html';
+      };
+
+      document.getElementById("choice4").onclick = function() {
+        if(output_choice4==answer){
+          localStorage.setItem('judge', 1);
+        }
+        else{
+          localStorage.setItem('judge', 0);
+        }
+        window.location.href = 'description.html';
+      };
+
 
        
     </script>
