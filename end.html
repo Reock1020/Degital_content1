@@ -8,11 +8,21 @@
 </head>
 
 <body>
-    <h1>＃問せいかい</h1>
+    <h1>
+        <div id="count_answer"></div>問せいかい
+    </h1>
+
     <br>
     <div style="text-align: center;">
         <a href="information.html" class="btn">もう一度</a>
     </div>
 </body>
+
+<script>
+    const count = localStorage.getItem('count');
+    const output_count = document.getElementById('count_answer');
+    output_count.innerHTML = count;
+    localStorage.setItem('count', count);
+</script>
 
 </html>
