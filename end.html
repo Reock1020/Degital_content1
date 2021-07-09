@@ -19,10 +19,10 @@
 </body>
 
 <script>
-    const count = localStorage.getItem('count');
+    const count = sessionStorage.getItem('count');
     const output_count = document.getElementById('count_answer');
     output_count.innerHTML = count;
-    localStorage.setItem('count', count);
+    sessionStorage.setItem('count', count);
 </script>
 
 </html>

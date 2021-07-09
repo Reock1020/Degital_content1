@@ -31,7 +31,7 @@
         const judge = localStorage.getItem('judge');
         const output_description = document.getElementById('description');
         const output_judge = document.getElementById('judge');
-        let count = localStorage.getItem('count')
+        let count = sessionStorage.getItem('count');
 
         function csv_data(dataPath) {
             const request = new XMLHttpRequest(); // HTTPでファイルを読み込む
@@ -51,10 +51,10 @@
         if (judge == 1) {
             output_judge.innerHTML = "正解";
             count++;
-            localStorage.setItem('count', count);
+            sessionStorage.setItem('count', count);
         } else {
             output_judge.innerHTML = "不正解";
-            localStorage.setItem('count', count);
+            sessionStorage.setItem('count', count);
         }
         csv_data('description.csv');
     </script>
