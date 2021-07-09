@@ -28,11 +28,15 @@ function flash_question(dataArray, dataString) {
     const question_volume = dataArray[question_num].length;
 
     const interValid = setInterval(() => {
-        print(dataArray[question_num]);
         if (count >= question_volume) {
             window.location.href = 'choice.html';
             clearInterval(interValid);
         }
+
+        if(count < question_volume) {
+            print(dataArray[question_num]);
+            count++;
+        } 
     }, 3000);
 
 }
@@ -40,7 +44,6 @@ function flash_question(dataArray, dataString) {
 function print(data) {
     output_svg.innerHTML = data[count];
     console.log(count);
-    count++;
 }
 
 csv_data('mondai.csv'); // csvのパス
