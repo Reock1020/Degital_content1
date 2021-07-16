@@ -14,15 +14,15 @@
 
     <br>
     <div style="text-align: center;">
-        <a href="information.html" class="btn">もう一度</a>
+        <a href="start.html" class="btn">スタート画面へ</a>
     </div>
 </body>
 
 <script>
-    const count = sessionStorage.getItem('count');
+    const correctCount = sessionStorage.getItem('correctCount');
     const output_count = document.getElementById('count_answer');
-    output_count.innerHTML = count;
-    sessionStorage.setItem('count', count);
+    output_count.innerHTML = correctCount;
+    sessionStorage.setItem('correctCount', correctCount);
 </script>
 
 </html>

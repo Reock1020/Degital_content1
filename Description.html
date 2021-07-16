@@ -22,7 +22,7 @@
         </p>
     </h2>
     <div style="text-align: center;">
-        <a class="btn" href="end.html" role="button">次の問題へ</a>
+        <button class="btn" type="button" id="link">次の問題へ</button>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -31,6 +31,7 @@
         const judge = localStorage.getItem('judge');
         const output_description = document.getElementById('description');
         const output_judge = document.getElementById('judge');
+        let correctCount = sessionStorage.getItem('correctCount');
         let count = sessionStorage.getItem('count');
 
         function csv_data(dataPath) {
@@ -50,13 +51,26 @@
 
         if (judge == 1) {
             output_judge.innerHTML = "正解";
-            count++;
-            sessionStorage.setItem('count', count);
+            correctCount++;
+            sessionStorage.setItem('correctCount', correctCount);
         } else {
             output_judge.innerHTML = "不正解";
-            sessionStorage.setItem('count', count);
+            sessionStorage.setItem('correctCount', correctCount);
         }
-        csv_data('description.csv');
+
+        csv_data('description.csv');       
+
+
+        document.getElementById("link").onclick = function() {
+            if(count>=5){
+                window.location.href = 'end.html';
+            }
+            else{
+                window.location.href = 'information.html';
+            }
+            count++;
+            sessionStorage.setItem('count', count);
+        };
     </script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
