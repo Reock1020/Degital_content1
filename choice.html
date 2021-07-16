@@ -48,7 +48,7 @@
         }
 
         function csv_array(data) {
-            const answerArray = data.split(',');
+            const answerArray = data.split('\n');
             // answer = answerArray[value];
             randomArray[value % 4] = answerArray[value];
             while (i < 4) {
